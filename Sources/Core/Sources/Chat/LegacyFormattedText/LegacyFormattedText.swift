@@ -90,6 +90,22 @@ public struct LegacyFormattedText {
   public func toString() -> String {
     return tokens.map(\.string).joined()
   }
+  
+  /// - Returns: The string styled using ANSI escape codes
+  public func toAnsiString() -> String {
+    var s = ""
+    for token in tokens {
+      if let color = token.color {
+        s += "\u{001B}" + color.ansi
+      }
+      if let style = token.style {
+        s += "\u{001B}" + style.ansi
+      }
+      s += token.string
+      s += "\u{001B}[0m"
+    }
+    return s
+  }
 
   #if canImport(Darwin)
   /// Creates an attributed string representing the formatted text.

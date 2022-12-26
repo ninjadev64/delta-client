@@ -79,7 +79,7 @@ public struct ChatComponent: Decodable, Equatable {
   /// Converts the chat component to plain text.
   /// - Parameter locale: The locale to use when resolving localized components.
   /// - Returns: The component's contents as plain text.
-  public func toText(with locale: MinecraftLocale) -> String {
+  public func toText(with locale: MinecraftLocale, ansi: Bool = false) -> String {
     var output = content.toText(with: locale)
     for child in children {
       output += child.toText(with: locale)
@@ -87,6 +87,10 @@ public struct ChatComponent: Decodable, Equatable {
 
     // Remove legacy formatted text style codes
     let legacy = LegacyFormattedText(output)
-    return legacy.toString()
+    if ansi {
+      return legacy.toAnsiString()
+    } else {
+      return legacy.toString()
+    }
   }
 }

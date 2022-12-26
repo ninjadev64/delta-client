@@ -39,5 +39,26 @@ extension LegacyFormattedText {
         case .white: return "#FFFFFF"
       }
     }
+
+    public var ansi: String {
+      switch self {
+        case .black: return "[0;30m"
+        case .darkBlue: return "[0;34m"
+        case .darkGreen: return "[0;32m"
+        case .darkAqua: return "[0;36m"
+        case .darkRed: return "[0;31m"
+        case .darkPurple: return "[0;35m"
+        case .gold: return "[0;33m"
+        case .gray: return "[0;37m"
+        case .darkGray: return "[0;90m"
+        case .blue: return "[0;94m"
+        case .green: return "[0;92m"
+        case .aqua: return "[0;96m"
+        case .red: return "[0;91m"
+        case .lightPurple: return "[0;95m"
+        case .yellow: return "[0;93m"
+        case .white: return "[0;97m"
+      }
+    }
   }
 }

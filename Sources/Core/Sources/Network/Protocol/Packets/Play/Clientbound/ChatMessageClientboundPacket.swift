@@ -23,7 +23,7 @@ public struct ChatMessageClientboundPacket: ClientboundEntityPacket {
 
     client.eventBus.dispatch(ChatMessageReceivedEvent(message))
 
-    let text = content.toText(with: locale)
+    let text = content.toText(with: locale, ansi: true)
     log.info(text)
   }
 }
